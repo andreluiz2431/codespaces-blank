@@ -1,0 +1,11 @@
+# Utilizando a imagem oficial do Python
+FROM python:3.9
+
+# Copiar o código do servidor TCP para o container
+COPY server_tcp.py /server_tcp.py
+
+# Expor a porta necessária para o servidor TCP
+EXPOSE 8080
+
+# Comando para rodar o servidor TCP
+CMD ["python", "/server_tcp.py"]

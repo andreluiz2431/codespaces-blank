@@ -1,0 +1,60 @@
+version: '3'
+services:
+  server_tcp:
+    build:
+      context: .
+      dockerfile: Dockerfile.server_tcp
+    container_name: server_tcp
+    ports:
+      - "8080:8080"
+    networks:
+      - my_network
+
+  client_tcp:
+    build:
+      context: .
+      dockerfile: Dockerfile.client_tcp
+    container_name: client_tcp
+    depends_on:
+      - server_tcp
+    restart: always
+    networks:
+      - my_network
+
+  server_udp:
+    build:
+      context: .
+      dockerfile: Dockerfile.server_udp
+    container_name: server_udp
+    ports:
+      - "8081:8080"
+    networks:
+      - my_network
+
+  client_udp:
+    build:
+      context: .
+      dockerfile: Dockerfile.client_udp
+    container_name: client_udp
+    depends_on:
+      - server_udp
+    restart: always
+    networks:
+      - my_network
+
+  performance_test:
+    image: python:3.9
+    container_name: performance_test
+    volumes:
+      - .:/workdir
+    working_dir: /workdir
+    depends_on:
+      - server_tcp
+      - server_udp
+    entrypoint: ["python", "test_performance.py"]
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge

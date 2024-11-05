@@ -1,0 +1,8 @@
+# Utilizando a imagem oficial do Python
+FROM python:3.9
+
+# Copiar o código do cliente TCP para o container
+COPY client_tcp.py /client_tcp.py
+
+# Comando para rodar o cliente TCP
+CMD ["python", "/client_tcp.py"]

@@ -1,0 +1,8 @@
+# Utilizando a imagem oficial do Python
+FROM python:3.9
+
+# Copiar o código do cliente UDP para o container
+COPY client_udp.py /client_udp.py
+
+# Comando para rodar o cliente UDP
+CMD ["python", "/client_udp.py"]

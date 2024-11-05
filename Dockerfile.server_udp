@@ -1,0 +1,11 @@
+# Utilizando a imagem oficial do Python
+FROM python:3.9
+
+# Copiar o código do servidor UDP para o container
+COPY server_udp.py /server_udp.py
+
+# Expor a porta necessária para o servidor UDP
+EXPOSE 8080
+
+# Comando para rodar o servidor UDP
+CMD ["python", "/server_udp.py"]
