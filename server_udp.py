@@ -25,6 +25,7 @@ def udp_server():
     for data, address in listen_for_incoming_data(server_socket):
         response, address = handle_incoming_data(data, address)
         send_response(server_socket, response, address)
+    server_socket.close()
 
 if __name__ == "__main__":
     udp_server()

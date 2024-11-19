@@ -38,8 +38,8 @@ def test_tcp_performance():
             except Exception as e:
                 print(f"Erro na conexão ou envio: {e}")
     
-    end_time = time.time()
     client_socket.close()
+    end_time = time.time()
     print(f"TCP: Time taken for 10,000 requests: {end_time - start_time:.2f} seconds")
 
 def test_udp_performance():
@@ -56,8 +56,8 @@ def test_udp_performance():
             except Exception as e:
                 print(f"Erro na conexão ou envio: {e}")
 
-    end_time = time.time()
     client_socket.close()
+    end_time = time.time()
     print(f"UDP: Time taken for 10,000 requests: {end_time - start_time:.2f} seconds")
 
 if __name__ == "__main__":

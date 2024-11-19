@@ -28,6 +28,7 @@ def tcp_server():
     bind_socket_to_address(server_socket, ('0.0.0.0', 8080))  # Bind to all interfaces on port 8080
     listen_for_incoming_data(server_socket)
     accept_connections(server_socket)  # Handle incoming connections
+    server_socket.close()
 
 if __name__ == "__main__":
     tcp_server()
