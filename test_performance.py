@@ -27,7 +27,7 @@ def test_tcp_performance():
     server_address = 'server_tcp'  # Nome do serviço no Docker Compose
     start_time = time.time()
     
-    for method in ["GET", "POST", "HEAD"]:
+    for method in ["GET", "POST", "HEAD", "PUT", "DELETE"]:
         for _ in range(10000):
             try:
                 client_socket = create_tcp_socket()
@@ -46,7 +46,7 @@ def test_udp_performance():
     server_address = ('server_udp', 8080)
     start_time = time.time()
 
-    for method in ["GET", "POST", "HEAD"]:
+    for method in ["GET", "POST", "HEAD", "PUT", "DELETE"]:
         for _ in range(10000):
             try:
                 client_socket = create_udp_socket()

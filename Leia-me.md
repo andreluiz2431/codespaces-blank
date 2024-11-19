@@ -21,3 +21,13 @@
 
 | TCP: Time taken for 10,000 requests: 4.40 seconds
 | UDP: Time taken for 10,000 requests: 3.48 seconds
+
+Com mais comandos
+
+| TCP: Time taken for 10,000 requests: 21.40 seconds
+| UDP: Time taken for 10,000 requests: 16.11 seconds
+
+# EXECUÇÃO
+
+docker-compose up performance_test
+docker-compose down
