@@ -27,15 +27,16 @@ def test_tcp_performance():
     server_address = 'server_tcp'  # Nome do serviço no Docker Compose
     start_time = time.time()
     
-    for _ in range(10000):
-        try:
-            client_socket = create_tcp_socket()
-            connect_to_server(client_socket, server_address, 8080)
-            request = "GET / HTTP/1.1\nHost: localhost\n\n"
-            send_tcp_request(client_socket, request)
-            response = receive_tcp_response(client_socket)
-        except Exception as e:
-            print(f"Erro na conexão ou envio: {e}")
+    for method in ["GET", "POST", "HEAD"]:
+        for _ in range(10000):
+            try:
+                client_socket = create_tcp_socket()
+                connect_to_server(client_socket, server_address, 8080)
+                request = f"{method} / HTTP/1.1\nHost: localhost\n\n"
+                send_tcp_request(client_socket, request)
+                response = receive_tcp_response(client_socket)
+            except Exception as e:
+                print(f"Erro na conexão ou envio: {e}")
     
     end_time = time.time()
     client_socket.close()
@@ -45,14 +46,15 @@ def test_udp_performance():
     server_address = ('server_udp', 8080)
     start_time = time.time()
 
-    for _ in range(10000):
-        try:
-            client_socket = create_udp_socket()
-            request = "GET / HTTP/1.1\nHost: localhost\n\n"
-            send_udp_request(client_socket, request, server_address)
-            response = receive_udp_response(client_socket)
-        except Exception as e:
-            print(f"Erro na conexão ou envio: {e}")
+    for method in ["GET", "POST", "HEAD"]:
+        for _ in range(10000):
+            try:
+                client_socket = create_udp_socket()
+                request = f"{method} / HTTP/1.1\nHost: localhost\n\n"
+                send_udp_request(client_socket, request, server_address)
+                response = receive_udp_response(client_socket)
+            except Exception as e:
+                print(f"Erro na conexão ou envio: {e}")
 
     end_time = time.time()
     client_socket.close()
