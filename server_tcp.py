@@ -15,12 +15,11 @@ def handle_client_connection(client_socket):
     data = client_socket.recv(1024)  # Receive data from client
     response = "HTTP/1.1 200 OK\nContent-Type: text/plain\n\nGET request received"
     client_socket.send(response.encode())  # Send response to client
-    client_socket.close()  # Close client connection
 
 def accept_connections(server_socket):
+    client_socket, address = server_socket.accept()  # Accept new connection
+    print(f"Connection from {address} established.")
     while True:
-        client_socket, address = server_socket.accept()  # Accept new connection
-        print(f"Connection from {address} established.")
         handle_client_connection(client_socket)  # Handle client in separate function
 
 def tcp_server():
